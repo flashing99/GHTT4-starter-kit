@@ -1,0 +1,66 @@
+@component('mail::message')
+    # Introduction
+
+    The body of your message.
+
+    @component('mail::button', ['url' => ''])
+        Button Text
+    @endcomponent
+
+    Thanks,<br>
+    {{ config('app.name') }}
+@endcomponent
+
+
+
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=7d1fefe60421d3
+MAIL_PASSWORD=552d32be049c83
+MAIL_ENCRYPTION=tls
+
+
+
+
+
+
+Bonjour,<br>
+Pour continuer la création de votre compte GHTT-ADMIN, veuillez nous envoyer le code de confirmation ci-dessous à l'adresse email exmple@groupe-htt.dz
+L'adresse e-mail associée à votre compte GHTT-ADMIN doit être vérifiée afin que vous puissiez accéder à votre espace admin.<br>
+De plus, cela vous permettra si nécessaire de récupérer votre compte plus facilement à l'avenir.
+
+* Si vous n'avez pas essayé de créer un nouveau compte avec cette adresse e-mail récemment, vous pouvez ignorer ce message.<br>
+
+Cordialement,
+L'équipe Groupe HTT ADMIN
+
+
+
+
+
+@component('mail::message')
+    # Bienvenue
+
+    Vérification du code de validation de votre nouveau compte GHTT-ADMIN.<br>
+
+    Valider votre compte GHTT-Admin<br>
+    =================================<br>
+    Vous venez de créer un nouveau compte GHTT-Admin, pour y accéder veuiller nous envoyer le code de validation à l'adresse
+    email exemple@groupe-htt.dz pour nous permettred d'activer votre compte.<br>
+    * Si vous n'avez pas essayé de créer un nouveau compte avec cette adresse e-mail récemment, vous pouvez ignorer ce
+    message.<br>
+
+
+
+
+    @component('mail::button', ['url' => ''])
+        785962
+    @endcomponent
+
+    Cordialement,<br>
+    L'équipe Groupe HTT ADMIN.<br>
+    Groupe HTT - Groupe Hôtellerie, Tourisme et Thermalisme.<br>
+    {{ config('app.name') }}
+@endcomponent
