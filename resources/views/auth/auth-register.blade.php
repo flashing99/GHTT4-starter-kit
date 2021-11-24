@@ -81,9 +81,9 @@
                                 </div>
                             </div>
                             <div class="  mb-1">
-                                <label for="password-confirm" class="form-label">Confirm Password</label>
+                                <label for="password_confirmation" class="form-label">Confirm Password</label>
                                 <div class="input-group input-group-merge form-password-toggle">
-                                    <input type="password" name="password_confirmation" id="password-confirm"
+                                    <input type="password" name="password_confirmation" id="password_confirmation"
                                         class="form-control"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         required />

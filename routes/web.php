@@ -28,9 +28,11 @@ use Illuminate\Support\Facades\Mail;
 
 /* By Mohamed ++++++++++++++++++++++++++++++++++++++++++++++*/
 
-// Route::get('/', function () {
-//     return view('test');
-// })->middleware('auth');
+Route::get('/test', function () {
+    return view('test');
+})->name('test');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -39,14 +41,14 @@ Route::get('/', function () {
 //! Route for mailing
 Route::get('/email', function () {
 
-    Mail::to('enafor99@gmail.com')->send(new InscriptionMail());
+    /*   Mail::to('enafor99@gmail.com')->send(new InscriptionMail());
 
-    return new InscriptionMail();
+    return new InscriptionMail(); */
 });
 
 
 
-Route::view('/home', 'home')->middleware('auth');
+Route::view('/home', 'home')->middleware('auth', 'verify');
 // Route::get('/', function () {
 //     return view('home');
 // });
