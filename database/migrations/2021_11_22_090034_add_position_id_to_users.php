@@ -28,6 +28,7 @@ class AddPositionIdToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
+            $table->dropForeign('users.position_id_foreign');
         });
     }
 }

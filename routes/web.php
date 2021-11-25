@@ -48,7 +48,7 @@ Route::get('/email', function () {
 
 
 
-Route::view('/home', 'home')->middleware('auth', 'verify');
+Route::view('/home', 'home')->middleware(['auth', 'verified']);
 // Route::get('/', function () {
 //     return view('home');
 // });

@@ -21,7 +21,7 @@ class CreatePositionUserTable extends Migration
 
             $table->unsignedBigInteger('position_id');
             $table->foreign('position_id')->references('id')->on('positions');
-            
+
             $table->timestamps();
         });
     }
@@ -33,7 +33,12 @@ class CreatePositionUserTable extends Migration
      */
     public function down()
     {
+        // Schema::table('position_user', function (Blueprint $table) {
+
+        //     $table->dropForeign('position_user_user_id_foreign');
+        //     $table->dropForeign('position_user_position_id_foreign');
+        // });
+
         Schema::dropIfExists('position_user');
-        
     }
 }

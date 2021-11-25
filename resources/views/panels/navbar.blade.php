@@ -199,7 +199,7 @@
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="me-50" data-feather="power"></i> Logout
                     </a>
-                    <form method="POST" id="logout-form" action="{{ route('logout') }}">
+                    <form method="POST" id="logout-form" action="{{ route('logout') }}" style="display: none">
                         @csrf
                     </form>
                 @else

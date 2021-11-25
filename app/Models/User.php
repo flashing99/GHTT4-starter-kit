@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 use App\Models\Position;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -22,7 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'position_id', 'user_code'
+        'position_id',
+        'user_code'
     ];
 
     /**

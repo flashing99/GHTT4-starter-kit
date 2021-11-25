@@ -68,7 +68,7 @@ class CreateNewUser implements CreatesNewUsers
         // $this->generateNumber();
 
         //!---- Send mail --------       
-        Mail::to($user->email)->send(new InscriptionMail($randomNumber, $user->name));
+        // Mail::to($user->email)->send(new InscriptionMail($randomNumber, $user->name));
 
 
         return $user;
