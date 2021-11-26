@@ -39,11 +39,19 @@ Route::get('/', function () {
 
 
 //! Route for mailing
+/* 
 Route::get('/email', function () {
 
-    /*   Mail::to('enafor99@gmail.com')->send(new InscriptionMail());
+   Mail::to('enafor99@gmail.com')->send(new InscriptionMail());
 
-    return new InscriptionMail(); */
+    return new InscriptionMail(); 
+});
+*/
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function () {
+    Route::resource('/users', 'UserController');
+
+    Route::post('/users/ajax/{user}/status', 'UserController@statusUser');
 });
 
 
