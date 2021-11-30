@@ -14,5 +14,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        \App\Models\Admin::factory(1)->create();
+
+        //! you can ran :
+        /*   >php artisan thinker 
+
+      Admin::factory()->create(['email'=>'admin@example.com'])
+      
+      */
     }
 }

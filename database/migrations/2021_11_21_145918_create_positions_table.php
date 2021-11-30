@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use Illuminate\Support\Facades\DB;
+use App\Models\Position;
+
 class CreatePositionsTable extends Migration
 {
     /**
@@ -20,7 +23,16 @@ class CreatePositionsTable extends Migration
             // $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
+
+        //! fill table position with data 
+        $positions = ['DG', 'IT MANAGER', 'DGC', 'DAF', 'GEST'];
+        foreach ($positions as $position) {
+
+            Position::create(['position_title' => $position]);
+        }
     }
+
+
 
     /**
      * Reverse the migrations.

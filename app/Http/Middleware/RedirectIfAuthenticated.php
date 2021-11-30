@@ -17,6 +17,8 @@ class RedirectIfAuthenticated
      * @param  string|null  ...$guards
      * @return mixed
      */
+
+    //!---- initial befor modifing (only Web Guard) ----
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
@@ -29,4 +31,30 @@ class RedirectIfAuthenticated
 
         return $next($request);
     }
+
+
+    //!--- After adabtion to bothe Web and Admin Gaurd
+    /* public function handle(Request $request, Closure $next, ...$guards)
+    {
+        $guards = empty($guards) ? [null] : $guards;
+
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->check()) {
+
+                //dd($guard);
+
+                switch ($guard) {
+                    case 'admin':
+                        return redirect(RouteServiceProvider::HOME_ADMIN);
+                        break;
+                        
+                    default:
+                        return redirect(RouteServiceProvider::HOME);
+                        break;
+                }
+            }
+        }
+
+        return $next($request);
+    } */
 }

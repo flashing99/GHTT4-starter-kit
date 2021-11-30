@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     // public function index()
@@ -31,6 +31,6 @@ class HomeController extends Controller
             ['link' => "home", 'name' => "Accueil"], ['name' => "GHTT"]
         ];
         // return view('/content/home', ['breadcrumbs' => $breadcrumbs ]);
-        return view('/content/home', ['breadcrumbs' => $breadcrumbs, 'pageConfigs' => $pageConfigs]);
+        return view('filiales/index', ['breadcrumbs' => $breadcrumbs, 'pageConfigs' => $pageConfigs]);
     }
 }

@@ -20,12 +20,12 @@
                             et Thermalisme</h2>
                     </a>
 
-                    <h4 class="card-title mb-1 text-center">Bienvenue sur GHTT ADMIN ! ✋</h4>
+                    <h4 class="card-title mb-1 text-center">Bienvenue sur GHTT DG 2021 ! ✋</h4>
                     <p class="card-text mb-2 text-center ">Veuillez vous connecter à votre compte pour accèder à votre
                         espace. </p>
                     {{-- <p class="card-text mb-2">Veuillez vous connecter à votre compte pour accèder à votre espace 👋. </p> --}}
 
-                    <form class="auth-login-form mt-2 " {{ route('login') }}" method="POST">
+                    <form class="auth-login-form mt-2 " {{ route('admin.login') }}" method="POST">
                         @csrf
                         <div class="mb-1">
                             <label for="email" class="form-label">Votre email</label>

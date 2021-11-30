@@ -38,32 +38,40 @@ class CreateNewUser implements CreatesNewUsers
 
         //----------------------------------
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+            'nom' => ['required', 'string', 'min:4', 'max:255'],
             'email' => [
                 'required',
                 'string',
                 'email',
                 'max:255',
+                'unique:users',
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
-            'position_id' => ['required'],
+
+            'position' =>  ['required'],
+            'filiale' =>  ['required'],
             'user_code' => ['string'],
 
         ])->validate();
 
 
+
+
         $user = User::create([
-            'name' => $input['name'],
+            'name' => $input['nom'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-            'position_id' => $input['position_id'],
+
+            'position_id' => $input['position'],
+            'filiale_id' => $input['filiale'],
             'user_code' => $randomNumber,
+
 
 
         ]);
 
-
+        //dd($user);
 
         // $this->generateNumber();
 

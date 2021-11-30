@@ -1,6 +1,13 @@
 <?php
 
 namespace App\Providers;
+/* 
+use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use App\Actions\Fortify\Admin\AttemptToAuthenticate;
+use App\Actions\Fortify\Admin\RedirectIfTwoFactorAuthenticatable;
+ */
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
@@ -13,6 +20,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 
 use App\Models\Position;
+use App\Models\Filiale;
 //--------------------------------
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -29,8 +37,20 @@ class FortifyServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {
+    {/* 
         //
+        $this->app->when([AuthenticatedSessionController::class, RedirectIfTwoFactorAuthenticatable::class, AttemptToAuthenticate::class])
+            ->needs(StatefulGuard::class)
+            ->give(function () {
+                return Auth::guard('admin');
+            });
+     */
+
+
+        if (request()->is('admin/*')) {
+            config()->set('fortify.guard', 'admin');
+            config()->set('fortify.home', '/admin/home');
+        }
     }
 
     /**
@@ -49,8 +69,6 @@ class FortifyServiceProvider extends ServiceProvider
             $user = User::where('email', $request->email)->first();
 
             if ($user && Hash::check($request->password, $user->password)) {
-
-
                 return $user;
             }
         });
@@ -64,8 +82,14 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::registerView(function () {
             // return view('auth.auth-register'); 
 
-            $positions = Position::all();
-            return view('auth.auth-register')->with('positions', $positions);
+            // $positions = Position::all();
+            // return view('auth.auth-register')->with('positions', $positions);
+
+            $positions = Position::get();
+            $filiales = Filiale::get();
+            //dd($subsidiaries);
+            //-------
+            return view('auth.auth-register')->with(['positions' => $positions, 'filiales' => $filiales]);
         });
         // 
         Fortify::requestPasswordResetLinkView(function () {

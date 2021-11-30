@@ -12,9 +12,8 @@ use App\Http\Controllers\HomeController;
 // mailling
 
 use App\Mail\InscriptionMail;
-use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Mail;
-use Symfony\Contracts\Service\Attribute\Required;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +27,7 @@ use Symfony\Contracts\Service\Attribute\Required;
 */
 
 /* By Mohamed ++++++++++++++++++++++++++++++++++++++++++++++*/
-/* 
+
 Route::get('/test', function () {
     return view('test');
 })->name('test');
@@ -47,53 +46,9 @@ Route::get('/files/form-select', function () {
 })->name('fselect');
 
 
-// Route::get('/', function () {
-//     return view('home');
-// });
- */
-/*
-Route::get('/', function () {
-    return view('welcome');
-    //return view('home');
-});
-
-Route::view('/home', 'home')->Middleware('auth');
- Route::group(['middleware' => 'verified'], function () {
-
-    Route::group(['middleware' => 'auth'], function () {
-
-        Route::get('/filiales', [HomeController::class, 'index']);
-    });
-}); */
-
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::view('/home', 'home')->middleware('auth');
-
-require __DIR__ . '/admin.php';
-
-
-//!+++++++++++++++++++++++++++++++++++++++++++++++++
-/* Route::group(['prefix' => 'filiales', 'middleware' => 'auth'], function () {
-    // return view('index');
-    return view('index');
-}); */
-//Auth::routes(['verify' => true]);
-
-/* Route::group(['prefix' => 'filiales', 'middleware' => 'auth'], function () {
-    // return view('index');
-    return view('admin.index');
-}); */
-/* 
-Route::group(['middleware' => 'auth'], function () {
-    // return view('index');
-    return view('filiales.index');
-});
- */
-
-//Route::view('/', 'index')->middleware(['auth', 'verified']);
 
 
 //! Route for mailing
@@ -106,19 +61,18 @@ Route::get('/email', function () {
 });
 */
 
-/* Route::group(['middleware' => 'auth'], function () {
-    Route::group(['middleware' => 'role:filiale', 'prefix' => 'filiale', 'as' => 'filiale.'], function () {
-        Route::resource('lessons', \App\Http\Controllers\Students\LessonController::class);
-    });
-    Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function () {
-        Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
-    });
-    // Route::group(['middleware' => 'role:manage-user', 'prefix' => 'admin', 'as' => 'manag-users.'], function () {
-    //     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
-    // });
-});
- */
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function () {
+    Route::resource('/users', 'UserController');
 
+    Route::post('/users/ajax/{user}/status', 'UserController@statusUser');
+});
+
+
+
+Route::view('/home', 'home')->middleware(['auth', 'verified']);
+// Route::get('/', function () {
+//     return view('home');
+// });
 //Route::get('/register', [AuthenticationHTTController::class, 'register'])->name('register');
 
 
@@ -133,14 +87,14 @@ Route::get('/email', function () {
 // Route::post('/auth-register', [AuthenticationHTTController::class, 'register'])->name('register');
 
 
-Route::group(['prefix' => 'auth-admin000000'], function () {
+Route::group(['prefix' => 'auth-admin'], function () {
 
     // Route::get('/', function () {
     //     return view('welcome');
     // });
 
-    // Route::get('/', [AuthenticationHTTController::class, 'login_form'])->name('dashboard-admin');
-    // Route::get('login-form', [AuthenticationHTTController::class, 'login_form'])->name('auth-login-form');
+    Route::get('/', [AuthenticationHTTController::class, 'login_form'])->name('dashboard-admin');
+    Route::get('login-form', [AuthenticationHTTController::class, 'login_form'])->name('auth-login-form');
 
 
     // Route::get('login-cover', [AuthenticationController::class, 'login_cover'])->name('auth-login-cover');

@@ -7,13 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-use App\Models\Position;
-use App\Models\Filiale;
 
-class User extends Authenticatable implements MustVerifyEmail
+
+class Admin extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'position_id',
         'filiale_id',
-        'user_code',
+        'user_code'
     ];
 
     /**
@@ -46,25 +44,4 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-
-
-    /**
-     * Get the position associated with the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function position()
-    {
-        return $this->hasOne(Position::class);
-    }
-    /**
-     * Get the filiale that owns the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function filiale()
-    {
-        return $this->belongsTo(Filiale::class);
-    }
 }
