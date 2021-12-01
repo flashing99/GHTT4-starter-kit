@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsActivatedToUsers extends Migration
+class CreateAggreGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AddIsActivatedToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->String('is_admin')->nullable();
+        Schema::create('aggre_groups', function (Blueprint $table) {
+            $table->id();
+            $table->String('group_name', 30)->nullable();
+            $table->integer('status')->nullable()->default(1);;
+            $table->timestamps();
         });
     }
 
@@ -26,9 +28,6 @@ class AddIsActivatedToUsers extends Migration
      */
     public function down()
     {
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_admin');
-        });
+        Schema::dropIfExists('aggre_groups');
     }
 }

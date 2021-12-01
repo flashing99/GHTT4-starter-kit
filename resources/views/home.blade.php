@@ -3,17 +3,17 @@
 @section('title', 'Accueil')
 
 @section('content')
-    <!-- Kick start -->
-    @if (auth()->user()->role == 1)
+
+    {{-- @if (auth()->user()->is_admin == 1)
+       
         @include('admin/index')
-    @endif
 
-    {{-- ----------- --}}
-    @if (auth()->user()->role == 2)
+         
+    @else
+
         @include('filiales/index')
-    @endif
 
-    <!--/ Page layout -->
+    @endif --}}
 
-    <h1>Home user</h1>
+    <h1>Home Main Page :Bienvenue User Manager</h1>
 @endsection

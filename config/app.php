@@ -229,6 +229,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        // add Provider,datatatable (php artisan vendor:publish --tag=datatables)
+        'DataTable' => Yajra\DataTables\DataTablesServiceProvider::class,
         'Helper' => App\Helpers\Helper::class,
     ],
 

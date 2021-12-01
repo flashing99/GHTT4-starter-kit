@@ -16,6 +16,10 @@ use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Contracts\Service\Attribute\Required;
 
+use App\Http\Controllers\Admin\HomeAdminControler;
+use App\Http\Controllers\Manager\HomeManagerControler;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,13 +70,44 @@ Route::view('/home', 'home')->Middleware('auth');
     });
 }); */
 
+/* Route::view('/home', 'home')->middleware('auth'); */
+
+
+
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+
+//--- MANEGRs routes ----------------------------------------------------------------
+Route::prefix('manager')->name('manager.')->middleware('auth')->group(function () {
+
+    //  Route::view('/home', 'admin.index')->name('home');
+    Route::get('manager.index', [HomeManagerControler::class, 'index'])->name('manager.home');
+    //!----------------- Aboube route needs to be verified ------------------------------------------------------------------
+
+
+    //!-----------------------------------------------------------------------------------
+});
+Route::view('/manager/index', 'home')->middleware(['auth', 'verified']);
+
 Route::get('/', function () {
     return view('welcome');
 });
+//---ADMINISTRATOR routes-----------------------------------------------------------
 
-Route::view('/home', 'home')->middleware('auth');
+
+//  Route::view('/home', 'admin.index')->name('home');
+Route::get('admin.index', [HomeAdminControler::class, 'index'])->name('admin.home');
+
+
+/*
 
 require __DIR__ . '/admin.php';
+
+*/
+
+
 
 
 //!+++++++++++++++++++++++++++++++++++++++++++++++++

@@ -19,42 +19,67 @@ class RedirectIfAuthenticated
      */
 
     //!---- initial befor modifing (only Web Guard) ----
-    public function handle(Request $request, Closure $next, ...$guards)
-    {
+    /* public function handle(Request $request, Closure $next, ...$guards)
+     {
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+
+                //  dd('GAURD 2021::: ' . $guard, auth()->user()->id);
+                // switch (auth()->user()->id) {
+
+
+                //     case '1':
+                //         return redirect(RouteServiceProvider::HOME_ADMIN);
+                //         dd(auth()->user()->id);
+                //         break;
+
+                //     default:
+                //         return redirect(RouteServiceProvider::HOME);
+                //         dd(auth()->user()->id);
+                //         break;
+                // }  
+
+                // //-----
+
+
+                  return redirect(RouteServiceProvider::HOME);
             }
         }
 
         return $next($request);
-    }
+    } */
 
 
     //!--- After adabtion to bothe Web and Admin Gaurd
-    /* public function handle(Request $request, Closure $next, ...$guards)
+    public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
+
+
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
 
                 //dd($guard);
 
-                switch ($guard) {
-                    case 'admin':
-                        return redirect(RouteServiceProvider::HOME_ADMIN);
-                        break;
-                        
-                    default:
-                        return redirect(RouteServiceProvider::HOME);
-                        break;
+
+                if ($guard == 'admin' || auth()->user()->id == 1) {
+
+                    dd('GAURD 2021::: ' . $guard, auth()->user()->id);
+
+
+
+                    return redirect(RouteServiceProvider::HOME_ADMIN);
+                } else {
+                    //dd('GAURD 2021::: ' . $guard, auth()->user()->id);
+
+                    return redirect(RouteServiceProvider::HOME);
                 }
             }
         }
 
         return $next($request);
-    } */
+    }
 }

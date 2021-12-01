@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Providers;
-/* 
+//  
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use App\Actions\Fortify\Admin\AttemptToAuthenticate;
 use App\Actions\Fortify\Admin\RedirectIfTwoFactorAuthenticatable;
- */
+//  
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
@@ -37,20 +37,20 @@ class FortifyServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {/* 
+    {
         //
         $this->app->when([AuthenticatedSessionController::class, RedirectIfTwoFactorAuthenticatable::class, AttemptToAuthenticate::class])
             ->needs(StatefulGuard::class)
             ->give(function () {
                 return Auth::guard('admin');
             });
-     */
 
 
-        if (request()->is('admin/*')) {
+
+        /* if (request()->is('admin/*')) {
             config()->set('fortify.guard', 'admin');
-            config()->set('fortify.home', '/admin/home');
-        }
+            config()->set('fortify.home', 'admin/home');
+        } */
     }
 
     /**

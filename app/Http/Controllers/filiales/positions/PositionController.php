@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\filiales\positions;
+namespace App\Http\Controllers\Admin\filiales\positions;
 
 use App\Http\Controllers\Controller;
 use App\Models\Position;
@@ -22,8 +22,8 @@ class PositionController extends Controller
 
         $positions = Position::all();
 
-        dd($positions);
+        //dd($positions);
 
-        // return view('positions.index');
+        return view('positions.index');
     }
 }

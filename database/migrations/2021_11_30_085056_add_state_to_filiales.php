@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsActivatedToUsers extends Migration
+class AddStateToFiliales extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddIsActivatedToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-            $table->String('is_admin')->nullable();
+        Schema::table('filiales', function (Blueprint $table) {
+            $table->integer('status')->default(1);
         });
     }
 
@@ -26,9 +25,8 @@ class AddIsActivatedToUsers extends Migration
      */
     public function down()
     {
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_admin');
+        Schema::table('filiales', function (Blueprint $table) {
+            //
         });
     }
 }

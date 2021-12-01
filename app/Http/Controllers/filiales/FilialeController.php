@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\filiales;
+namespace App\Http\Controllers\Admin\filiales;
 
 use App\Models\Filiale;
 use App\Http\Controllers\Controller;
@@ -11,7 +11,7 @@ class FilialeController extends Controller
 
     public function __construct()
     {
-        //$this->middleware('auth');
+        // $this->middleware('auth');
     }
 
 

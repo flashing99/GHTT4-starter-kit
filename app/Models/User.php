@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 use App\Models\Position;
 use App\Models\Filiale;
+use App\Models\DataLine;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -66,5 +67,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function filiale()
     {
         return $this->belongsTo(Filiale::class);
+    }
+
+    public function data_lines()
+    {
+        return $this->hasMany(DataLine::class);
     }
 }

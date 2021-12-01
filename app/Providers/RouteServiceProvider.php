@@ -23,7 +23,7 @@ class RouteServiceProvider extends ServiceProvider
 
     //! --- New Guards : [ /filiales] and [/admin]
     // public const HOME = '/filiales';
-    // public const HOME_ADMIN = '/admin';
+    public const HOME_ADMIN = '/admin/home';
 
     /**
      * The controller namespace for the application.
