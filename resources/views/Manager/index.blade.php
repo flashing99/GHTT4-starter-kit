@@ -35,15 +35,15 @@
 
             /* background-color: #f3f2f7; */
             /*   background-color: #015bab;                                              
-                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                            .table:not(.table-dark):not(.table-light) thead:not(.table-dark) th.merged-all,
-                                                                                                                                                                                                                                                            .table:not(.table-dark):not(.table-light) tfoot:not(.table-dark) th.merged-all {
+                                                                                                                                                                                                                                                                                                                                                                                    .table:not(.table-dark):not(.table-light) thead:not(.table-dark) th.merged-all,
+                                                                                                                                                                                                                                                                                                                                                                                    .table:not(.table-dark):not(.table-light) tfoot:not(.table-dark) th.merged-all {
 
 
-                                                                                                                                                                                                                                                                background-color: #edecf1;
-                                                                                                                                                                                                                                                                color: #00172c;
-                                                                                                                                                                                                                                                                /* background-color: #f3f2f7; */
+                                                                                                                                                                                                                                                                                                                                                                                        background-color: #edecf1;
+                                                                                                                                                                                                                                                                                                                                                                                        color: #00172c;
+                                                                                                                                                                                                                                                                                                                                                                                        /* background-color: #f3f2f7; */
             /* background-color: #015bab;                                                                                                                                                                                               color: #00172c; */
         }
 
@@ -149,7 +149,7 @@
 
 
                     {{-- <div class="invoice-spacing"></div> --}}
-                    <form method="POST" action="" id="firstForm">
+                    <form method="POST" action="" id="firstForm-2">
                         @csrf
 
                         <table class="table-responsive table table-striped table-row-bordered border rounded w-100"
@@ -165,12 +165,12 @@
                                     <th colspan="2" class=" align-middle text-center  border  merged">Mois</th>
                                     <th colspan="2" class=" align-middle text-center border merged">Evolution
                                     </th>
-                                    <th rowspan="2" class=" align-middle text-center  border merged-all">Actions
+                                    <th rowspan="2" class=" align-middle text-center  border merged-all">Réctification
                                     </th>
                                 </tr>
                                 <tr class="fw-bolder fs-7 text-gray-800 px-7">
-                                    <th class=" text-center ">Octobre-20</th>
-                                    <th class=" text-center ">Octobre-21</th>
+                                    <th class=" text-center  text-primary">DECEMBRE<br>2020</th>
+                                    <th class=" text-center text-primary ">DECEMBRE<br>2021</th>
                                     <th class=" text-center ">Val</th>
                                     <th class=" text-center ">%</th>
 
@@ -182,37 +182,45 @@
 
                                 @foreach ($agr_items as $key => $value)
 
-                                    <tr class='text-center'>
-                                        <td class="py-1 ">
-                                            <p class="card-text fw-bold  font-medium-2 mb-25">{{ $value->item_name }}</p>
-                                            {{-- <p class="card-text text-nowrap">
+                                    @if ($value->ag_groups_id != 6)
+
+
+                                        <tr class='text-center'>
+                                            <td class="py-1 ">
+                                                <p class="card-text fw-bold  font-medium-2 mb-25">{{ $value->item_name }}
+                                                </p>
+                                                {{-- <p class="card-text text-nowrap">
                                     Description de l'agrégat
                                 </p> --}}
-                                        </td>
-                                        <td class="_py-1 fw-bold">
-                                            <span class="fw-bold font-medium-2">{{ $value->compte_scf }}</span>
-                                        </td>
-                                        <td class="  fw-bold">
-                                            <span class="fw-bold font-medium-2">18.634</span>
-                                        </td>
-                                        <td class="  fw-bold">
-                                            <span class="fw-bold font-medium-2">
-                                                <input type="number" class="form-control" value="" placeholder="0" name=''
-                                                    id='{{ $value->id }}'>
-                                            </span>
-                                        </td>
-                                        <td class=" fw-bold">
-                                            <span class="text-success font-medium-2 _me-25"> -3 451 </span>
-                                        </td>
-                                        <td class=" fw-bold">
-                                            <span class="text-danger font-medium-2 ">-19%</span>
-                                        </td>
-                                        <td class=" fw-bold">
-                                            <span>action</span>
-                                        </td>
+                                            </td>
+                                            <td class="_py-1 fw-bold">
+                                                <span class="fw-bold font-medium-2">{{ $value->compte_scf }}</span>
+                                            </td>
+                                            <td class="  fw-bold">
+                                                <span class="fw-bold font-medium-2">18.634</span>
+                                            </td>
+                                            <td class="  fw-bold">
+                                                <span class="fw-bold font-medium-2">
+                                                    <input type="number" class="form-control" value="" placeholder="0"
+                                                        name='' id='{{ $value->id }}'>
+                                                </span>
+                                            </td>
+                                            <td class=" fw-bold">
+                                                <span class="text-success font-medium-2 _me-25"> -3 451 </span>
+                                            </td>
+                                            <td class=" fw-bold">
+                                                <span class="text-danger font-medium-2 ">-19%</span>
+                                            </td>
+                                            <td class=" fw-bold">
+                                                <div class="btn btn-primary">
+                                                    <span>Réctification</span>
+
+                                                </div>
+                                            </td>
 
 
-                                    </tr>
+                                        </tr>
+                                    @endif
 
                                 @endforeach
 
@@ -221,6 +229,98 @@
                             </tbody>
                         </table>
 
+
+                        {{--  --}}
+
+                        <div class="invoice-spacing"></div>
+
+
+                        <table class="table-responsive mt-4 table table-striped table-row-bordered border rounded w-100"
+                            id="table-1">
+
+                            <thead>
+                                <tr class="fw-bolder fs-7 text-gray-800 px-7">
+                                    <th rowspan="2"
+                                        class="align-middle text-center border-bottom border-end w-200px card-text fw-bold    ">
+                                        Decription -Agrégats </th>
+                                    <th rowspan="2" class="align-middle text-center border merged-all">Comptes SCF
+                                    </th>
+                                    <th colspan="2" class=" align-middle text-center  border  merged">Mois</th>
+                                    <th colspan="2" class=" align-middle text-center border merged">Evolution
+                                    </th>
+                                    <th rowspan="2" class=" align-middle text-center  border merged-all">Réctification
+                                    </th>
+                                </tr>
+                                <tr class="fw-bolder fs-7 text-gray-800 px-7">
+                                    <th class=" text-center ">NOVEMBRE <br>2021</th>
+                                    <th class=" text-center ">DECEMBRE<br>2021</th>
+                                    <th class=" text-center ">Val</th>
+                                    <th class=" text-center ">%</th>
+
+                                </tr>
+                            </thead>
+
+
+
+
+                            <tbody>
+
+                                @foreach ($agr_items as $key => $value)
+
+                                    @if ($value->ag_groups_id >= 6)
+
+
+                                        <tr class='text-center'>
+                                            <td class="py-1 ">
+                                                <p class="card-text fw-bold  font-medium-2 mb-25">{{ $value->item_name }}
+                                                </p>
+                                                {{-- <p class="card-text text-nowrap">
+                                    Description de l'agrégat
+                                </p> --}}
+                                            </td>
+                                            <td class="_py-1 fw-bold">
+                                                <span class="fw-bold font-medium-2">{{ $value->compte_scf }}</span>
+                                            </td>
+                                            <td class="  fw-bold">
+                                                <span class="fw-bold font-medium-2">18.634</span>
+                                            </td>
+                                            <td class="  fw-bold">
+                                                <span class="fw-bold font-medium-2">
+                                                    <input type="number" class="form-control" value="" placeholder="0"
+                                                        name='' id='{{ $value->id }}'>
+                                                </span>
+                                            </td>
+                                            <td class=" fw-bold">
+                                                <span class="text-success font-medium-2 _me-25"> -3 451 </span>
+                                            </td>
+                                            <td class=" fw-bold">
+                                                <span class="text-danger font-medium-2 ">-19%</span>
+                                            </td>
+                                            <td class=" fw-bold">
+                                                <div class="btn btn-primary">
+                                                    <span>Réctification</span>
+
+                                                </div>
+                                            </td>
+
+
+                                        </tr>
+                                    @endif
+
+                                @endforeach
+
+
+
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+                        {{--  --}}
+
                         <div class="invoice-spacing"></div>
 
                         <div class="col-xl-12 col-md-12 col-12 text-center invoice-actions mt-md-0 mt-2">
@@ -228,11 +328,11 @@
                                 <div class="card-body">
                                     <button class="btn btn-primary w-100 mb-75" data-bs-toggle="modal"
                                         data-bs-target="#send-invoice-sidebar">
-                                        Enregistrer
+                                        Sauvegarder
                                     </button>
                                     <button class="btn btn-success w-100" data-bs-toggle="modal"
                                         data-bs-target="#add-payment-sidebar">
-                                        Clôturer
+                                        Valider
                                     </button>
                                 </div>
                             </div>

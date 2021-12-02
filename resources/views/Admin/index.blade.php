@@ -251,7 +251,7 @@
                 {{-- {{ $filiales }} --}}
 
 
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-4 col-xl-2">
 
                     {{--  --}}
                     <div class="card    {{ $rand == 1 ? 'border-success' : 'border-danger' }}">
@@ -276,49 +276,50 @@
                                 </div>
                             </div>
 
-                            <h4 class="card-title">{{ $value->filiale_name }}</h4> {{ $rand }} </h4>
-                            {{-- <p class="card-text">Date de validation : 21-01-2021</p> --}}
+                            <h4 class="card-title">
+                                {{ $value->filiale_name }}
 
-                            <div class="d-flex flex-row meetings align-start center text-left align-items-center">
-                                <div class="avatar bg-light-primary rounded me-1">
-                                    <div class="avatar-content">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            class="feather feather-calendar avatar-icon font-medium-3">
-                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                                        </svg>
+                                {{-- </h4> {{ $rand }} </h4> --}}
+                                {{-- <p class="card-text">Date de validation : 21-01-2021</p> --}}
+                                <hr class="mb-2">
+
+                                <div class="d-flex flex-row meetings align-start center text-left align-items-center">
+                                    <div class="avatar bg-light-primary rounded me-1">
+                                        <div class="avatar-content">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-calendar avatar-icon font-medium-3">
+                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="content-body">
+                                        <h6 class="mb-0"><small>04 Decembre </small> </h6>
+
                                     </div>
                                 </div>
-                                <div class="content-body">
-                                    <h6 class="mb-0">Sam, 25 Nov, 2021 <small>10:AM</small> </h6>
+                                <hr class="mb-2">
+                                {{-- <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-muted fw-bolder">Gadres Dirigants</h6>
+                                        <h3 class="mb-0">10.3k</h3>
+                                    </div>
+                                    <div>
+                                        <h6 class="text-muted fw-bolder">Employés</h6>
+                                        <h3 class="mb-0">156</h3>
+                                    </div>
 
+                                </div> --}}
+
+                                <div class="d-grid col-12">
+                                    <button type="button" class="btn btn-primary waves-effect waves-float waves-light">
+                                        Voir les détails
+                                    </button>
                                 </div>
-                            </div>
-                            <hr class="mb-2">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h6 class="text-muted fw-bolder">Gadres Dirigants</h6>
-                                    <h3 class="mb-0">10.3k</h3>
-                                </div>
-                                <div>
-                                    <h6 class="text-muted fw-bolder">Employés</h6>
-                                    <h3 class="mb-0">156</h3>
-                                </div>
-                                {{-- <div>
-                                <h6 class="text-muted fw-bolder">Rank</h6>
-                                <h3 class="mb-0">23</h3>
-                            </div> --}}
-                            </div>
-                            <hr class="mb-2">
-                            <div class="d-grid col-12">
-                                <button type="button" class="btn btn-primary waves-effect waves-float waves-light">
-                                    Voir les détails
-                                </button>
-                            </div>
                         </div>
                     </div>
 
@@ -326,6 +327,25 @@
                 {{--  --}}
             @endforeach
 
+        </div>
+
+
+        <div class="invoice-spacing"></div>
+
+        <div class="col-xl-12 col-md-12 col-12 text-center invoice-actions mt-md-0 mt-2">
+            <div class="card ">
+                <div class="card-body">
+                    <button class="btn btn-primary w-100 mb-75" data-bs-toggle="modal"
+                        data-bs-target="#send-invoice-sidebar">
+                        Rafraicher
+                    </button>
+                    <div class="invoice-spacing"></div>
+
+                    <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#add-payment-sidebar">
+                        Télécharger le consolidé
+                    </button>
+                </div>
+            </div>
         </div>
     </section>
 

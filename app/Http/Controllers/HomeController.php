@@ -36,7 +36,9 @@ class HomeController extends Controller
 
             //  dd(auth()->user()->is_admin);
 
-            $filiales = Filiale::where('status', '1')->get();
+            // $filiales = Filiale::where('status', '1')->withe('filial_data_lines')->where()->get();
+
+
 
 
             return view('admin.index', ['breadcrumbs' => $breadcrumbs, 'pageConfigs' => $pageConfigs])->with('filiales', $filiales);
