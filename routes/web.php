@@ -74,8 +74,11 @@ Route::view('/home', 'home')->Middleware('auth');
 
 
 
+// Route::view('/home', 'home')->middleware(['auth', 'verified']);
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);
+// Route::get('/users', [HomeController::class], 'users')->name('users');
 
 
 
@@ -89,16 +92,23 @@ Route::prefix('manager')->name('manager.')->middleware('auth')->group(function (
 
     //!-----------------------------------------------------------------------------------
 });
-Route::view('/manager/index', 'home')->middleware(['auth', 'verified']);
+
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/logout', function () {
+    return view('welcome');
+});
+Route::get('/users', function () {
+    return view('users');
+});
+
 //---ADMINISTRATOR routes-----------------------------------------------------------
 
 
 //  Route::view('/home', 'admin.index')->name('home');
-Route::get('admin.index', [HomeAdminControler::class, 'index'])->name('admin.home');
+// Route::get('admin.index', [HomeAdminControler::class, 'index'])->name('admin.home');
 
 
 /*

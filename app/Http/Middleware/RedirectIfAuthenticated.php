@@ -67,13 +67,15 @@ class RedirectIfAuthenticated
 
                 if ($guard == 'admin' || auth()->user()->id == 1) {
 
-                    dd('GAURD 2021::: ' . $guard, auth()->user()->id);
-
-
+                    config()->set('fortify.guard', 'admin');
+                    config()->set('fortify.home', 'admin/home');
 
                     return redirect(RouteServiceProvider::HOME_ADMIN);
                 } else {
                     //dd('GAURD 2021::: ' . $guard, auth()->user()->id);
+
+                    config()->set('fortify.guard', 'web');
+                    config()->set('fortify.home', 'admin/home');
 
                     return redirect(RouteServiceProvider::HOME);
                 }

@@ -26,8 +26,13 @@ class AddFilialeIdToUsers extends Migration
      */
     public function down()
     {
+        // Schema::table('users', function (Blueprint $table) {
+        //     //$table->dropForeign('users.filiale_id_foreign');
+        // });
+
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('users.filiale_id_foreign');
+            $table->dropForeign('filiale_id');
         });
+        Schema::dropIfExists('users');
     }
 }

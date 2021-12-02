@@ -1,10 +1,4 @@
-@extends('layouts/contentLayoutMaster')
-
-@section('title', 'Accueil')
-
-@section('content')
-
-    {{-- @if (auth()->user()->is_admin == 1)
+{{-- @if (auth()->user()->is_admin == 1)
        
         @include('admin/index')
 
@@ -15,5 +9,11 @@
 
     @endif --}}
 
+@if (auth()->user()->is_admin == 1)
+    <h1>Home Main Page :Bienvenue Admin</h1>
+    @include('admin.index')
+
+@else
     <h1>Home Main Page :Bienvenue User Manager</h1>
-@endsection
+    @include('manager.index')
+@endif

@@ -3,10 +3,10 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\AggregatesItem;
+use App\Models\AgItem;
 use Illuminate\Support\Facades\DB;
 
-class AddPopulateNameAggregatesItem extends Migration
+class AddPopulateNameAgItem extends Migration
 {
     /**
      * Run the migrations.
@@ -24,14 +24,27 @@ class AddPopulateNameAggregatesItem extends Migration
             "ventes de travaux",
             "ventes d'études et autres prestations",
             "autres",
+            "Chiffre d'Affaires",
+
             "Production Stockée  ou destockée ",
             "Production immobilisée",
             "subvention d'exploitation",
             "Production de la période",
+
+            "achats consommés",
+            "dont achats de marchandises",
+            "matières premières",
+            "achats d'études et de prestations de services",
+            "autres services extérieurs",
+            "Services extérieurs",
+            "Consommations de la période",
+
             "Valeur ajoutée",
+
             "charges de personnel",
             "Impôts, taxes et versements assimilés",
             "EBE ",
+
             "concours bancaires courants",
             "Créances clients globales (montant bruts)",
             "Effectif global",
@@ -39,11 +52,11 @@ class AddPopulateNameAggregatesItem extends Migration
 
         ];
 
-        foreach ($aggregates as $aggregate) {
+        /* foreach ($aggregates as $aggregate) {
 
-            AggregatesItem::create(['item_name' => $aggregate]);
-            // DB::insert('insert into aggregates_items (id,item_name,status,compte_scf,aggregates_groups_id) values ( ?,?,?,?,?)', ['id', 'item_name', 1, '', '']);
-        };
+            AgItem::create(['item_name' => $aggregate]);
+            // DB::insert('insert into ag_items (id,item_name,status,compte_scf,ag_groups_id) values ( ?,?,?,?,?)', ['id', 'item_name', 1, '', '']);
+        }; */
 
 
         $compte_scfs = [
@@ -53,10 +66,12 @@ class AddPopulateNameAggregatesItem extends Migration
             "705&706",
             "703,708,709",
             "",
+
             "72",
             "73",
             "74",
             "",
+
             "60",
             "600",
             "601",
@@ -64,10 +79,11 @@ class AddPopulateNameAggregatesItem extends Migration
             "61",
             "62",
             "",
+            "",
             "63",
             "64",
             "",
-            "",
+
             "519",
             "411",
             "",
@@ -75,14 +91,24 @@ class AddPopulateNameAggregatesItem extends Migration
 
         ];
 
-        foreach ($compte_scfs as $compte_scf) {
+        foreach ($aggregates as $key => $value) {
+            //echo $key.": ";
+            $aggregate = $value;
+            $compte_scf =  $compte_scfs[$key];
 
-            // DB::insert('insert into aggregates_items (item_name) values (?)', ['item_name' => $value]);
+            echo $aggregate . ' : ' . $compte_scf . "\n";
+            // AgItem::create(['item_name' => $aggregate, 'compte_scf' => $compte_scf]);
+            DB::insert('insert into ag_items (item_name,status,compte_scf) values ( ?,?,?)', [$aggregate, 1, $compte_scf]);
+        }
+
+        /* foreach ($compte_scfs as $compte_scf) {
+
+            // DB::insert('insert into ag_items (item_name) values (?)', ['item_name' => $value]);
 
             // DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
 
-            AggregatesItem::create(['compte_scf' => $compte_scf]);
-        };
+            AgItem::create(['compte_scf' => $compte_scf]);
+        }; */
     }
 
     /**

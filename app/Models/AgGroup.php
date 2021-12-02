@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\AggregatesItem;
+use App\Models\AgItem;
 
-class AggregateGroup extends Model
+class AgGroup extends Model
 {
     use HasFactory;
 
@@ -15,8 +15,13 @@ class AggregateGroup extends Model
     ];
 
 
-    public function aggregate_group()
+    public function ag_items()
     {
-        return $this->hesMany(AggregatesItem::class);
+
+
+        return $this->hesMany(AgItem::class, 'ag_groups_id');
+        // dd($g);
+
+
     }
 }

@@ -233,6 +233,7 @@ return [
         // add Provider,datatatable (php artisan vendor:publish --tag=datatables)
         'DataTable' => Yajra\DataTables\DataTablesServiceProvider::class,
         'Helper' => App\Helpers\Helper::class,
+        'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
     ],
 
 ];

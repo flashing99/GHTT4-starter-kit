@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Filiale;
+use App\Models\AgItem;
 
 class HomeManagerControler extends Controller
 {
@@ -37,11 +38,18 @@ class HomeManagerControler extends Controller
 
         //! --  To change you template you need to modify a config file (custom.php) in <sconfig> folder
 
+        //--------------------------------------------------------------
+
+        $aggr_items = AgItem::where('status', '1')->with('aggregate_group')->get();
+
+        //--------------------------------------------------------------
+
+        dd($aggr_items);
         $pageConfigs = ['showMenu' => false, 'theme' => 'dark'];
         $breadcrumbs = [
             ['link' => "home", 'name' => "Accueil"], ['name' => "GHTT"],, ['link' => "javascript:void(0)", 'name' => "Layouts"], ['name' => "Layout without menu"]
         ];
-        return view('manager/index', ['breadcrumbs' => $breadcrumbs, 'pageConfigs' => $pageConfigs]);
+        return view('manager/index', ['breadcrumbs' => $breadcrumbs, 'pageConfigs' => $pageConfigs, 'aggr_items' => $aggr_items]);
     }
 
 

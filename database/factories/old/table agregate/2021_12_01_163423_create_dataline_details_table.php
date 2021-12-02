@@ -22,8 +22,8 @@ class CreateDatalineDetailsTable extends Migration
             $table->unsignedBigInteger('datas_lines_id');
             $table->foreign('datas_lines_id')->references('id')->on('datas_lines');
 
-            $table->unsignedBigInteger('aggregates_items_id');
-            $table->foreign('aggregates_items_id')->references('id')->on('aggregates_items');
+            $table->unsignedBigInteger('ag_items_id');
+            $table->foreign('ag_items_id')->references('id')->on('ag_items');
 
             $table->string('data_month')->nullable();
             $table->integer('status')->default(1);
